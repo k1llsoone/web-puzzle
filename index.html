@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Project X</title>
+	 <meta charset="utf-8">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/style.css?ver=2">
+</head>
+<body>
+	<div id="error">ошибка</div>
+	<div class="content">
+		This is мой 1st web-?.</br>
+		You are welcome! (Добро пожаловать..)
+		<div class="password1"></div>
+	</div>
+
+
+	<p class="hidden_text">Что?</p>
+	<div class="first_quest">
+		Похоже это головоломка, а ее решение ты можешь найти прям <a class="first_questAnswer1">здесь</a>..
+	</div>
+	<div class="first_questStage1">
+		okay... put password сюда:
+		<input type="text" name="input1" class="first_questStage2" required>
+		<input type="button" name="submit1" id="submit1" value="Send it">
+	</div>
+	<div class="first_questStage3">
+		P</br>
+		R
+		<input type="text" name="input2" class="first_questStage4" required>
+		<input type="button" name="submit2" id="submit2" value="X">
+	</div>
+	<div class="first_questStage5">
+		Хорошо.
+	</div>
+	<div class="content2">
+		Prepare to уровень 2!
+	</div>
+	<div class="second_quest">
+		Начать
+	</div>
+	<div class="second_questStage1"></div>
+	<div class="second_questStage2">
+		Введи супер-секретный код, который был вначале: </br>
+		<input type="text" name="input3" class="second_questStage3">
+		<input type="button" name="submit3" id="submit3" value="Submit">
+		<div class="second_questStage4">
+			А теперь сумму цифр которые только что мигали! : </br>
+			<input type="text" name="input4" class="second_questStage5">
+			<input type="button" name="submit4" id="submit4" value="Submit">
+		</div>
+	</div>
+	<div class="third_quest">
+		Source <a class="superLetter">w</a>ill direct you./для гениев-кодеров-хакеров
+	</div>
+
+
+	<div id="error">Error</div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var sec = 1000;
+		var currentTime = 0;
+
+		function gameTimer(){
+			setInterval(function(){
+				currentTime++;
+			},1000);
+			return currentTime;
+		}
+
+		function errorWorker(){
+			$('#error').fadeIn("slow");
+			setTimeout(function(){
+				$('#error').fadeOut("slow");
+			},sec);
+		}
+
+		var secretCode = Math.floor((Math.random() * 9999) + 1);
+		$('.password1').text(secretCode);
+
+		setTimeout(function(){
+			$('body').css('background','black');
+			$('.content').hide();
+			$('.hidden_text').show();
+			gameTimer();
+		},11111);
+
+		$('.hidden_text').click(function(){
+			$('.hidden_text').hide();
+			$('.first_quest').fadeIn(sec);
+		});
+
+		$('.first_questAnswer1').click(function(){
+			$('.first_quest').hide();
+			$('.first_questStage1').fadeIn(sec);
+		});
+		//Did you looking this?
+		//|
+		//|
+		//|
+		//V
+		//Click at the letter W много раз
+
+		$('#submit1').click(function(){
+			var value1 = $('.first_questStage2').val();
+			if (value1 == "password") {
+				$('.first_questStage1').hide();
+				$('.first_questStage3').slideToggle(sec);
+			}
+			else {
+				errorWorker();
+			}
+		});
+
+		$('#submit2').click(function(){
+			var value2 = $('.first_questStage4').val();
+			if ((value2 == "OJECT") || (value2 == "oject")) {
+				$('.first_questStage3').hide();
+				$('.first_questStage5').show();
+				setTimeout(function(){
+					$('.first_questStage5').hide();
+					$('.content').hide();
+					$('body').css('background','rgb(150,50,50)');
+					$('.content2').show();
+				},2000);
+
+				setTimeout(function(){
+					$('.second_quest').show();
+				},3000);
+			}
+			else {
+				errorWorker();
+			}
+		});
+
+		$('.second_quest').click(function(){
+			$('.second_quest').hide();
+			$('.content2').hide();
+			var sum = 0, counter = 0;
+			var timer = setInterval(function(){
+				var randDigit = Math.floor((Math.random() * 9) + 1);
+				var r = Math.floor((Math.random() * 250) + 1);
+				var g = Math.floor((Math.random() * 250) + 1);
+				var b = Math.floor((Math.random() * 250) + 1);
+				$('body').css('background','rgb('+r+','+g+','+b+')');
+				sum += randDigit;
+				$('.second_questStage1').show().text(randDigit);
+				if (counter == 4) {
+					sum -= randDigit;
+					stopColor();
+					$('.second_questStage1').hide();
+					$('.second_questStage2').fadeIn("slow");
+				}
+				counter++;
+			},500);
+
+			function stopColor() {
+				clearInterval(timer);
+			}
+
+			$('#submit3').click(function(){
+				var submit3Value = $('.second_questStage3').val();
+				if (submit3Value == secretCode) {
+					$('.second_questStage4').slideDown("slow");
+					$('#submit4').click(function(){
+						var submit5Value = $('.second_questStage5').val();
+						if (Number(submit5Value) == sum) {
+							$('body').css('background','white');
+							$('.second_questStage2').hide();
+							$('.third_quest').show();
+						}
+					});
+				} else errorWorker();
+			});
+
+			var letterSize = 36;
+			$('.superLetter').click(function(){
+				letterSize--;
+				$(this).css('font-size',letterSize);
+				if (letterSize == 5) {
+					$('.third_quest').hide();
+					finalTime = gameTimer();
+					alert('/7o3gpaBJI9I-0! You finished in '+finalTime+' seconds');
+				}
+			});
+		});
+	});
+</script>
+</body>
+</html>

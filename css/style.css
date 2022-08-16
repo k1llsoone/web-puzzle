@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+body {
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: 36px;
+	font-family: 'Open Sans', sans-serif;
+	user-select: none;
+}
+
+input {
+	font-size: 20px;
+}
+
+.content {
+	padding-top: 10%;
+	font-weight: bold;
+	font-size: 40px;
+}
+
+.password1 {
+	font-size: 7px;
+	font-weight: 100;
+	padding-top: 50vh;
+}
+
+.hidden_text {
+	display: none;
+	user-select: all;
+	font-size: 50px;
+}
+
+.hidden_text:hover {
+	cursor: pointer;
+	color: white;
+}
+
+.first_quest {
+	padding-top: 10%;
+	display: none;
+	color: white;
+}
+
+.first_questStage1 {
+	padding-top: 10%;
+	display: none;
+	color: white;
+}
+
+.first_questStage3 {
+	display: none;
+	background: white;
+}
+
+.first_questStage5 {
+	display: none;
+	color: white;
+}
+
+.content2 {
+	padding-top: 20%;
+	display: none;
+	color: white;
+}
+
+.second_quest {
+	display: none;
+	text-align: center;
+	background: rgb(200,200,200);
+	border-radius: 10px;
+	padding: 10px;
+	margin-top: 20px;
+}
+
+.second_quest:hover {
+	background: rgb(220,220,220);
+	cursor: pointer;
+}
+
+.second_questStage1 {
+	display: none;
+	font-size: 500px;
+}
+
+.second_questStage2 {
+	padding-top: 20%;
+	display: none;
+}
+
+.second_questStage4 {
+	display: none;
+}
+
+.third_quest {
+	padding-top: 20%;
+	display: none;
+}
+
+#error {
+	display: none;
+	color: white;
+}
